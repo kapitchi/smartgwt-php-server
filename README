@@ -1,0 +1,27 @@
+SmartGWT PHP Server
+
+Simple SmartGWT PHP server which can handle simple CRUD requests.
+Each datasource implements 5 operations:
+- fetch
+- add
+- update
+- remove
+- custom
+I've implemented Bond_SmartGwt_DataSource_DbTable which works with Zend_Db_Table.
+
+Please bear in mind this is not full implementation of SmartGWT server but it served my needs and it will yours maybe also ;)
+If you need more info do not hesitate and contact me on matus.zeman@gmail.com.
+I consider SmartGWT being a very nice GWT library and I'm happy to extend server's existing code for missing functionality if there will be some interest.
+
+Simplest usage:
+$ds = new Bond_SmartGwt_DataSource_DbTable();
+$ds->setDbTable(new My_Model_DbTable_User());
+
+$server = new Bond_SmartGwt_Server();
+//$server->setLog($log);
+$server->addDataSource($ds, 'UserDS');
+
+$httpResponse = $server->handle();
+$httpResponse->sendResponse();
+exit;
+
